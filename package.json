@@ -4,10 +4,12 @@
   "main": "dist/server.js",
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "npx tsc",
     "start": "node dist/server.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "update": "pnpm update"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +36,7 @@
     "nodemailer": "^6.9.14",
     "nodemon": "^3.1.4",
     "otp-generator": "^4.0.1",
+    "redis": "^4.6.15",
     "request-ip": "^3.3.0",
     "winston": "^3.13.1",
     "winston-daily-rotate-file": "^5.0.0",
@@ -63,6 +66,7 @@
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
+    "only-allow": "^1.2.1",
     "prettier": "^3.3.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.3"
