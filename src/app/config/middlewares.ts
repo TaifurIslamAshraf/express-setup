@@ -8,9 +8,11 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import requestIp from "request-ip";
+import { swaggerConfigs } from "../docs";
 import enableCrossOriginResourcePolicy from "../middlewares/enableCrossOriginResourcePolicy";
 import sendResponse from "../utilities/sendResponse";
 import config from "./config";
+import { setupSwagger } from "./swagger";
 
 const middlewares = (app: Application) => {
   const corsOptions: CorsOptions = {
@@ -41,6 +43,9 @@ const middlewares = (app: Application) => {
   if (config.app.env === "development") {
     app.use(morgan("dev"));
   }
+
+  //swagger api middleware
+  setupSwagger(app, swaggerConfigs);
 
   // Root route
   app.get("/api/v1", (req, res) => {
