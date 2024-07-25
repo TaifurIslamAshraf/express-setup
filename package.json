@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "dist/server.js",
   "private": true,
+  "engines": {
+    "npm": ">=8.19.2",
+    "node": ">=18.18.2"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
@@ -13,7 +17,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
