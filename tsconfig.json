@@ -9,14 +9,20 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
+    "importHelpers": true,
+    "importsNotUsedAsValues": "remove",
 
     /* Strict Type Checking */
-    "strict": false, // Changed to false to be less strict
-    "noImplicitAny": false, // Allow implicit any
-    "strictNullChecks": false, // Don't check for null/undefined
-    "noUnusedLocals": false, // Don't error on unused locals
+    "strict": true, // Changed to false to be less strict
+    "noImplicitAny": true, // Allow implicit any
+    "strictNullChecks": true, // Don't check for null/undefined
+    "noUnusedLocals": true, // Don't error on unused locals
     "noUnusedParameters": false, // Don't error on unused parameters
     "noFallthroughCasesInSwitch": true,
+
+    /* JavaScript Support */
+    "allowJs": true,
+    "checkJs": true,
 
     /* Module Resolution */
     "baseUrl": "./src",
