@@ -4,9 +4,9 @@
   "main": "dist/server.js",
   "private": true,
   "engines": {
-    "npm": ">=8.19.2",
-    "node": ">=18.18.2",
-    "pnpm": ">=9.13.2"
+    "npm": ">=8",
+    "node": ">=18",
+    "pnpm": ">=9"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
