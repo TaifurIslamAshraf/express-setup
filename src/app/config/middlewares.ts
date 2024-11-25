@@ -36,7 +36,11 @@ const middlewares = (app: Application) => {
   app.use(helmet());
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ extended: true, limit: "50mb" }));
-  app.use(compression());
+  app.use(
+    compression({
+      threshold: 1024,
+    })
+  );
   app.use(cookieParser());
   app.use(userAgent.express());
   app.use(requestIp.mw());
