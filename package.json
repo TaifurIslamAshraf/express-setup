@@ -1,6 +1,7 @@
 {
   "name": "myserver",
   "version": "1.0.0",
+  "type": "module",
   "main": "dist/server.js",
   "private": true,
   "engines": {
@@ -15,7 +16,11 @@
     "start": "node -r tsconfig-paths/register dist/server.js",
     "commit": "cz",
     "prepare": "husky",
-    "update": "pnpm update"
+    "update": "pnpm update",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,json,md}\"",
+    "type-check": "tsc --noEmit"
   },
   "lint-staged": {
     "*.{ts,json,md}": "prettier --write",
