@@ -2,8 +2,7 @@ import { Server } from "http";
 import mongoose from "mongoose";
 import app from "./app";
 import config from "./app/config/config";
-import redisClient from "./app/config/redisClient";
-import { consoleLogger, errorLogger, logger } from "./app/utilities/logger";
+import { consoleLogger, errorLogger, logger } from "./app/utils/logger";
 
 process.on("uncaughtException", (error) => {
   consoleLogger.error(
@@ -24,7 +23,7 @@ const bootstrap = async () => {
     logger.info(`👌 Database is connected successfully.`);
 
     //redis connection
-    await redisClient.connect();
+    // await redisClient.connect();
     logger.info("Redis connected successfull");
 
     server = app.listen(config.app.port, () => {

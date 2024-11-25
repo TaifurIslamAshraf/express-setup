@@ -1,5 +1,5 @@
 import path from "path";
-import { ISwaggerConfig } from "../config/swagger";
+import { ISwaggerConfig } from "../app/config/swagger";
 
 export const swaggerConfigs: ISwaggerConfig[] = [
   {

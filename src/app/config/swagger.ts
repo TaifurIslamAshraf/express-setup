@@ -3,7 +3,7 @@ import fs from "fs";
 import yaml from "js-yaml";
 import swaggerUi from "swagger-ui-express";
 import ApiError from "../errorHandlers/ApiError";
-import { logger } from "../utilities/logger";
+import { logger } from "../utils/logger";
 
 export interface ISwaggerConfig {
   name: string;

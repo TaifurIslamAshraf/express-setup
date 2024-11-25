@@ -8,9 +8,9 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import requestIp from "request-ip";
-import { swaggerConfigs } from "../docs";
+import { swaggerConfigs } from "../../docs";
 import enableCrossOriginResourcePolicy from "../middlewares/enableCrossOriginResourcePolicy";
-import sendResponse from "../utilities/sendResponse";
+import sendResponse from "../utils/sendResponse";
 import config from "./config";
 import { setupSwagger } from "./swagger";
 
@@ -48,7 +48,7 @@ const middlewares = (app: Application) => {
   setupSwagger(app, swaggerConfigs);
 
   // Root route
-  app.get("/api/v1", (req, res) => {
+  app.get("/", (_, res) => {
     sendResponse(res, {
       statusCode: 200,
       message: "Server sunning successfully.",

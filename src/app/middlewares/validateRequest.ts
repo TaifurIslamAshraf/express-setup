@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AnyZodObject, ZodEffects } from "zod";
-import fileDelete from "../utilities/fileDelete";
+import fileDelete from "../utils/fileDelete";
 
 const validateRequest =
   (schema: AnyZodObject | ZodEffects<AnyZodObject>) =>

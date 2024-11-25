@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { TSuccessResponse } from "../types/utilities";
+import { TSuccessResponse } from "../../types/utilities";
 
 const sendResponse = <T>(res: Response, data: TSuccessResponse<T>) => {
   const responseData: TSuccessResponse<T> = {
