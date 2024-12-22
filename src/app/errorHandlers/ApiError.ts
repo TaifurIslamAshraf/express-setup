@@ -1,15 +1,16 @@
 class ApiError extends Error {
-  statusCode: number;
+  constructor(
+    public statusCode: number,
 
-  constructor(statusCode: number, message: string, stack = "") {
+    message: string,
+
+    public errorCode?: string,
+
+    public validationErrors: { path?: string; message: string }[] = [],
+
+    public path?: string
+  ) {
     super(message);
-
-    this.statusCode = statusCode;
-    if (stack) {
-      this.stack = stack;
-    } else {
-      Error.captureStackTrace(this, this.constructor);
-    }
   }
 }
 

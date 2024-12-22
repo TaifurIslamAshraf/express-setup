@@ -1,3 +1,6 @@
+import enableCrossOriginResourcePolicy from "@/app/middlewares/enableCrossOriginResourcePolicy";
+import sendResponse from "@/app/utils/sendResponse";
+import { swaggerConfigs } from "@/docs";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import cors, { CorsOptions } from "cors";
@@ -8,11 +11,10 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import requestIp from "request-ip";
-import { swaggerConfigs } from "../../docs";
-import enableCrossOriginResourcePolicy from "../middlewares/enableCrossOriginResourcePolicy";
-import sendResponse from "../utils/sendResponse";
 import config from "./config";
 import { setupSwagger } from "./swagger";
+import hpp from "hpp";
+import mongoSanitize from "express-mongo-sanitize";
 
 const middlewares = (app: Application) => {
   const corsOptions: CorsOptions = {
@@ -38,7 +40,14 @@ const middlewares = (app: Application) => {
   app.use(express.urlencoded({ extended: true, limit: "50mb" }));
   app.use(
     compression({
-      threshold: 1024,
+      filter: (req, res) => {
+        if (req.headers["x-no-compression"]) {
+          return false;
+        }
+        return compression.filter(req, res);
+      },
+      level: 6,
+      threshold: 100 * 1000, // 100kb
     })
   );
   app.use(cookieParser());
@@ -47,6 +56,9 @@ const middlewares = (app: Application) => {
   if (config.app.env === "development") {
     app.use(morgan("dev"));
   }
+
+  app.use(mongoSanitize()); // Prevent NoSQL injections
+  app.use(hpp()); // Prevent HTTP Parameter Pollution
 
   //swagger api middleware
   setupSwagger(app, swaggerConfigs);

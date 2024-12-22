@@ -3,8 +3,15 @@ export type TErrorMessages = {
   message: string;
 };
 
-export type TIErrorResponse = {
+export interface TIErrorResponse {
+  success: boolean;
   statusCode: number;
   message: string;
-  errorMessages: TErrorMessages[];
-};
+  errorMessages: {
+    path: string;
+    message: string;
+    code?: string;
+  }[];
+  stack?: string;
+  timestamp: string;
+}
