@@ -1,4 +1,4 @@
-import { TIErrorResponse } from "../../types/error";
+import { TIErrorResponse, TErrorMessage } from "../../types/error";
 import ApiError from "./ApiError";
 
 interface ErrorMessage {
@@ -11,12 +11,12 @@ const handleApiError = (err: ApiError): TIErrorResponse => {
   const errorMessages: ErrorMessage[] = [];
 
   // Handle validation errors
-  if (err.validationErrors?.length > 0) {
+  if (err.validationErrors && err.validationErrors.length > 0) {
     errorMessages.push(
-      ...err.validationErrors.map((error) => ({
+      ...err.validationErrors.map((error: TErrorMessage) => ({
         path: error.path || "",
         message: error.message,
-        code: "VALIDATION_ERROR",
+        code: error.code || "VALIDATION_ERROR",
       }))
     );
   } else {

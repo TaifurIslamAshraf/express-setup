@@ -1,12 +1,12 @@
 import httpStatus from "http-status";
 import mongoose from "mongoose";
-import { TErrorMessages, TIErrorResponse } from "../../types/error";
+import { TErrorMessage, TIErrorResponse } from "../../types/error";
 
 const handleMongooseCastError = (
   err: mongoose.Error.CastError
 ): TIErrorResponse => {
   const message = "Invalid Id";
-  const errorMessages: TErrorMessages[] = [
+  const errorMessages: TErrorMessage[] = [
     {
       path: err.path,
       message,
@@ -16,6 +16,8 @@ const handleMongooseCastError = (
     statusCode: httpStatus.BAD_REQUEST,
     message,
     errorMessages,
+    success: false,
+    timestamp: new Date().toISOString(),
   };
 };
 

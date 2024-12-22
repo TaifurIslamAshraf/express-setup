@@ -1,6 +1,7 @@
 import globalErrorhandler from "@/app/middlewares/globalErrorHandler";
 import { notFoundRoute } from "@/app/middlewares/notFoundRoute";
 import express, { Application, Response } from "express";
+import os from "os";
 
 import middlewares from "@/app/config/middlewares";
 import router from "@/app/routes";
@@ -17,13 +18,19 @@ app.use("/api/v1", (_, res: Response) => {
   });
 });
 
-app.get("/health", (req, res) => {
+app.get("/health", async (req, res) => {
   const healthcheck = {
+    status: "ok",
     uptime: process.uptime(),
-    message: "OK",
+    environment: process.env.NODE_ENV,
     timestamp: Date.now(),
+    memory: {
+      free: os.freemem(),
+      total: os.totalmem(),
+    },
   };
-  res.send(healthcheck);
+
+  res.json(healthcheck);
 });
 
 // api endpoints

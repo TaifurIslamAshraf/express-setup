@@ -28,16 +28,13 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
-      "@/app": ["app/*"],
+      "@test/*": ["../test/*"],
       "@config/*": ["config/*"],
-      "@errorHandlers/*": ["errorHandlers/*"],
-      "@helpers/*": ["helpers/*"],
-      "@middlewares/*": ["middlewares/*"],
+      "@controllers/*": ["controllers/*"],
       "@models/*": ["models/*"],
-      "@routes/*": ["routes/*"],
-      "@utils/*": ["utils/*"],
-      "@validators/*": ["validators/*"],
-      "@types/*": ["types/*"]
+      "@middlewares/*": ["middlewares/*"],
+      "@services/*": ["services/*"],
+      "@utils/*": ["utils/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

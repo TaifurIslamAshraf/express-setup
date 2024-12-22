@@ -1,10 +1,10 @@
 import httpStatus from "http-status";
-import { TErrorMessages, TIErrorResponse } from "../../types/error";
+import { TErrorMessage, TIErrorResponse } from "../../types/error";
 
 const handleMongooseDuplicateError = (err: Error): TIErrorResponse => {
   const errorField = err.message.split("{")[1].replace("}", "").split(":");
   const path = errorField[0].replace(" ", "").toUpperCase();
-  const errorMessages: TErrorMessages[] = [
+  const errorMessages: TErrorMessage[] = [
     {
       path,
       message: `This ${path}${errorField[1]
@@ -19,6 +19,8 @@ const handleMongooseDuplicateError = (err: Error): TIErrorResponse => {
     statusCode: httpStatus.BAD_REQUEST,
     message: "Duplicate error",
     errorMessages,
+    success: false,
+    timestamp: new Date().toISOString(),
   };
 };
 
