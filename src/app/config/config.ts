@@ -11,6 +11,7 @@ const config = {
   },
   database: {
     mongoUri: env.MONGODB_URI || "mongodb://localhost:27017/your_database",
+    pgUrl: env.PG_URL || "postgresql://localhost:5432/your_database",
   },
   domains: {
     clientSideURL: env.CLIENT_SIDE_URL || "http://localhost:3000",

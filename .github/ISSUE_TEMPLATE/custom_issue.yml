@@ -1,0 +1,38 @@
+name: Custom Issue
+description: Submit a general issue or ask a question
+title: "[ISSUE]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: "Please provide detailed information about your issue or question."
+  - type: input
+    id: title
+    attributes:
+      label: "Title"
+      description: "Provide a concise title for the issue."
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Provide a detailed description of the issue or question."
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: "Category"
+      description: "Choose the category of your issue."
+      options:
+        - Question
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional Context"
+      description: "Add any additional details, links, or examples."

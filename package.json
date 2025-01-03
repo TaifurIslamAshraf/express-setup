@@ -11,8 +11,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only src/server.ts",
-    "build": "npx tsc",
-    "start": "node -r tsconfig-paths/register dist/server.js",
+    "start": "node -r tsconfig-paths/register dist/src/server.js",
+    "build": "tsc && tsc-alias",
     "commit": "cz",
     "prepare": "husky",
     "update": "pnpm update",
@@ -23,9 +23,14 @@
     "dev:debug": "ts-node-dev --inspect -r tsconfig-paths/register --respawn src/server.ts",
     "test:watch": "jest --watch",
     "docker:dev": "docker-compose -f docker-compose.dev.yml up",
-    "db:seed": "ts-node-dev -r tsconfig-paths/register src/seeders/index.ts",
     "validate": "pnpm lint && pnpm type-check && pnpm test",
-    "clean": "rimraf dist coverage"
+    "clean": "rimraf dist coverage",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx ./src/app/db/migrate.ts",
+    "db:update": "bun run db:generate && bun run db:migrate",
+    "db:seed": "tsx src/db/seed.ts",
+    "db:drop": "drizzle-kit drop",
+    "studio": "drizzle-kit studio"
   },
   "lint-staged": {
     "*.{ts,json,md}": "prettier --write",
@@ -46,6 +51,7 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "drizzle-orm": "0.38.3",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "express-mongo-sanitize": "2.2.0",
@@ -65,6 +71,7 @@
     "nodemon": "^3.1.7",
     "os": "0.1.2",
     "otp-generator": "^4.0.1",
+    "pg": "8.13.1",
     "redis": "^4.7.0",
     "request-ip": "^3.3.0",
     "swagger-ui-express": "^5.0.1",
@@ -93,12 +100,14 @@
     "@types/node": "^20.17.9",
     "@types/nodemailer": "^6.4.17",
     "@types/otp-generator": "^4.0.2",
+    "@types/pg": "8.11.10",
     "@types/request-ip": "^0.0.41",
     "@types/swagger-ui-express": "^4.1.7",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
+    "drizzle-kit": "0.30.1",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.7",
@@ -106,7 +115,9 @@
     "only-allow": "^1.2.1",
     "prettier": "^3.4.2",
     "ts-node-dev": "^2.0.0",
+    "tsc-alias": "1.8.10",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "4.19.2",
     "typescript": "^5.7.2"
   }
 }

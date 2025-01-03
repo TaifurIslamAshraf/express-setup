@@ -1,5 +1,4 @@
 import { Server } from "http";
-import mongoose from "mongoose";
 import app from "./app";
 import config from "./app/config/config";
 import { consoleLogger, errorLogger, logger } from "./app/utils/logger";
@@ -18,13 +17,13 @@ let server: Server;
 const bootstrap = async () => {
   try {
     //mongodb connection
-    await mongoose.connect(config.database.mongoUri);
+    // await mongoose.connect(config.database.mongoUri);
     consoleLogger.info(`===${config.app.env}===`);
-    logger.info(`👌 Database is connected successfully.`);
+    // logger.info(`👌 Database is connected successfully.`);
 
     //redis connection
     // await redisClient.connect();
-    logger.info("Redis connected successfull");
+    // logger.info("Redis connected successfull");
 
     server = app.listen(config.app.port, () => {
       logger.info(
